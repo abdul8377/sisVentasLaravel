@@ -14,9 +14,12 @@ export default {
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
         "./resources/**/*.js",
-        './src/**/*.html',
         "./resources/**/*.vue",
         './src/**/*.jsx',
+        './vendor/wireui/wireui/resources/**/*.blade.php',
+        './vendor/wireui/wireui/ts/**/*.ts',
+        './vendor/wireui/wireui/src/View/**/*.php'
+
     ],
 
     theme: {

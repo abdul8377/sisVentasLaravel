@@ -1,6 +1,8 @@
 <?php
 
 use App\Livewire\Dashboard\Main;
+use App\Livewire\ProductMain;
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -13,5 +15,5 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard',Main::class)->name('dashboard');
-
+    Route::get('/productos',ProductMain::class)->name('productos');
 });

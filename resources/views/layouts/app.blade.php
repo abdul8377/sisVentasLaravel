@@ -9,7 +9,7 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-
+        @wireUiScripts
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <!-- Styles -->
         @livewireStyles
@@ -20,6 +20,8 @@
         <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
     </head>
     <body class="font-sans antialiased">
+        <x-banner />
+        <x-dialog />
     <!-- https://tailwindcomponents.com/component/dashboard-template/landing -->
         <div>
 
