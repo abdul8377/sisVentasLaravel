@@ -4,12 +4,12 @@
             Plantel
         </h2>
     </x-slot>
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+    <div class="mx-auto sm:px-6 lg:px-8">
         <div class="flex items-center justify-between dark:text-gray-400 gap-4 mb-2">
             <x-input icon="search" placeholder="Buscar registro" wire:model.live="search"/>
             <x-button wire:click="create()" spinner="create" icon="plus" primary label="Nuevo"/>
                 @if($isOpen)
-                    @include('livewire.manager-create')
+                    @include('livewire.product-create')
                 @endif
         </div>
 
@@ -19,29 +19,32 @@
               <thead class="bg-indigo-500 text-white">
                 <tr class="text-left text-xs font-bold  uppercase">
                   <td scope="col" class="px-6 py-3">ID</td>
-                  <td scope="col" class="px-6 py-3">Nombre completo</td>
-                  <td scope="col" class="px-6 py-3">Cargo</td>
-                  <td scope="col" class="px-6 py-3">DNI</td>
-                  <td scope="col" class="px-6 py-3">F. Nacimiento</td>
-                  <td scope="col" class="px-6 py-3">Periodo</td>
+                  <td scope="col" class="px-6 py-3">Nombre</td>
+                  <td scope="col" class="px-6 py-3">descripcion</td>
+                  <td scope="col" class="px-6 py-3">precio</td>
+                  <td scope="col" class="px-6 py-3">stock</td>
+                  <td scope="col" class="px-6 py-3">categoria</td>
                   <td scope="col" class="px-6 py-3 text-center">Opciones</td>
                 </tr>
               </thead>
               <tbody class="divide-y divide-gray-200 dark:text-gray-400">
-                @foreach($managers as $item)
+                @foreach($products as $item)
                 <tr class="text-sm font-medium text-gray-900">
                   <td class="px-6 py-4">
                     <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-indigo-500 text-white">
                       {{$item->id}}
                     </span>
                   </td>
-                  <td class="px-6 py-4 dark:text-gray-200">{{$item->fullname}}</td>
-                  <td class="px-6 py-4 dark:text-gray-200">{{$item->position}}</td>
-                  <td class="px-6 py-4 dark:text-gray-200">{{$item->dni}}</td>
-                  <td class="px-6 py-4 dark:text-gray-200">{{$item->birthdate}}</td>
-                  <td class="px-6 py-4 dark:text-gray-200">{{$item->season}}</td>
+                  <td class="px-6 py-4 dark:text-gray-200">{{$item->name}}</td>
+                  <td class="px-6 py-4 dark:text-gray-200">{{$item->description}}</td>
+                  <td class="px-6 py-4 dark:text-gray-200">{{$item->price}}</td>
+                  <td class="px-6 py-4 dark:text-gray-200">{{$item->stock}}</td>
+                  <td class="px-6 py-4 dark:text-gray-200">{{$item->category->name}}</td>
                   <td class="px-6 py-4 text-right">
+                    @can('Editar productos')
                     <x-button.circle wire:click="edit({{$item}})" primary icon="pencil" />
+                    @endcan
+                    @can('Eliminar productos')
                     <x-button.circle negative icon="x" x-on:confirm="{
                         title: 'Seguro que deseas eliminar?',
                         icon: 'error',
@@ -49,18 +52,19 @@
                         params: {{$item}}
                     }"
                     />
+                    @endcan
                   </td>
                 </tr>
                 @endforeach
               </tbody>
             </table>
         </div>
-        @if(!$managers->count())
+        @if(!$products->count())
             <p class="dark:text-gray-200">No existe ningun registro conincidente</p>
         @endif
-        @if($managers->hasPages())
+        @if($products->hasPages())
         <div class="px-6 py-3">
-            {{$managers->links()}}
+            {{$products->links()}}
         </div>
         @endif
 

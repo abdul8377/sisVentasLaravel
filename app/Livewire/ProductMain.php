@@ -14,7 +14,7 @@ use WireUi\Traits\Actions;
 
 class ProductMain extends Component{
     use WithPagination;
-
+    use Actions;
     public $isOpen=false;
     public $position_id;
     public ?Product $product;
