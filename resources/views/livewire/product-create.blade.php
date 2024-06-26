@@ -15,7 +15,7 @@
     <div class="my-2 md:mr-2 md:mb-0 w-full">
         <x-input wire:model="form.stock" label="stock"/>
     </div>
-    <div class="grid sm:grid-cols-8 gap-2">
+    <div class="my-2 md:mr-2 md:mb-0 w-full">
         <x-native-select label="Selecciona una categoria" wire:model="form.category_id">
             <option>Seleccione opción</option>
             @foreach ($categories as $category)
